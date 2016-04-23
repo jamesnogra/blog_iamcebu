@@ -1,0 +1,104 @@
+.j-globe-container {
+	width: 100%;
+	height: 100%;
+	background-color: #0099da;
+	position: relative;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+/*LAND*/
+.j-land {
+	background-color: #00c46d;
+	position: absolute;
+	border-radius: 5000px;
+}
+.j-land-big {
+	width: 55%;
+	height: 25%;
+}
+.j-land-small {
+	width: 35%;
+	height: 15%;
+}
+.j-start-10-10 {
+	top: 10%;
+	left: 10%;
+}
+.j-start-35-30 {
+	top: 35%;
+	left: 30%;
+}
+.j-start-40-40 {
+	top: 50%;
+	left: 50%;
+}
+.j-start-80-10 {
+	top: 80%;
+	left: 10%;
+}
+.j-start-20-10 {
+	top: 20%;
+	left: 10%;
+}
+.j-start-70-20 {
+	top: 70%;
+	left: 20%;
+}
+.j-start-25-30 {
+	top: 25%;
+	left: 30%;
+}
+.j-animation-property {
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+.j-very-slow-land-1 {
+	animation-duration: 5s;
+	animation-name: j-animate-very-slow-1;
+}
+.j-very-slow-land-2 {
+	animation-duration: 7s;
+	animation-name: j-animate-very-slow-2;
+}
+.j-very-slow-land-3 {
+	animation-duration: 9s;
+	animation-name: j-animate-very-slow-3;
+}
+.j-very-slow-land-4 {
+	animation-duration: 4s;
+	animation-name: j-animate-very-slow-4;
+}
+
+/*CLOUDS*/
+.j-cloud {
+	background-color: #FFFFFF;
+	position: absolute;
+	border-radius: 5000px;
+}
+.j-cloud-small {
+	width: 25%;
+	height: 10%;
+}
+.j-cloud-big {
+	width: 40%;
+	height: 15%;
+}
+
+/*ANIMATIONS*/
+@keyframes j-animate-very-slow-1 {
+	from { left: 100%; }
+	to { left: -55%; }
+}
+@keyframes j-animate-very-slow-2 {
+	from { left: 125%; }
+	to { left: -50%; }
+}
+@keyframes j-animate-very-slow-3 {
+	from { left: 145%; }
+	to { left: -45%; }
+}
+@keyframes j-animate-very-slow-4 {
+	from { left: 100%; }
+	to { left: -65%; }
+}

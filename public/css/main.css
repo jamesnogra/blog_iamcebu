@@ -1,3 +1,38 @@
 body {
+	width: 100%;
     font-family: 'Lato', sans-serif;
+}
+
+/*TOP NAVIGATION with globe and menus*/
+#top-main-div {
+}
+
+#top-main-div-skewed-color {
+	position: fixed;
+	top: 0px;
+	height: 200px;
+	width: 4000px;
+	margin-top: -110px;
+	background-color: #F1F1D4;
+	-webkit-transform: skewY(-3deg);
+	-moz-transform: skewY(-3deg);
+	-ms-transform: skewY(-3deg);
+	-o-transform: skewY(-3deg);
+	transform: skewY(-3deg);
+}
+
+#main-content {
+	margin-top: 50px;
+}
+
+#main-globe {
+	width: 150px;
+	height: 150px;
+	margin-top: 15px;
+}
+
+#main-top-nav-links {
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 60px;
 }
