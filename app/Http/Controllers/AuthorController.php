@@ -44,6 +44,12 @@ class AuthorController extends Controller
         return view('author.login', ['error_code'=>$error_code]);
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->action('AuthorController@login');
+    }
+
     public function postLogin(Request $request)
     {
         $emailParam = $request->input('email');
@@ -76,8 +82,12 @@ class AuthorController extends Controller
             $tempAuthor->password = Hash::make($request->input('password'));
         }
         if ($request->hasFile('profile-picture')) {
-            return $this->uploadAuthorProfilePicture($request, $tempAuthor->code);
+            $tempProfilePic =  $this->uploadAuthorProfilePicture($request, $tempAuthor->code);
+            if ($tempProfilePic['code'] == 1) {
+                $tempAuthor->picture = $tempProfilePic['path'];
+            }
         }
+        $tempAuthor->save();
         return redirect()->action('AuthorController@editProfile');
     }
 
@@ -93,12 +103,10 @@ class AuthorController extends Controller
             return ['code'=>-1, 'path'=>''];
         }
         else {
-            $destinationPath = url('/images/profile/'); // upload path
             $extension = $request->file('profile-picture')->getClientOriginalExtension(); // getting image extension
             $fileName = $code.'.'.$extension; // renaming image
-            $fullPath = $destinationPath."/".$fileName;
-            $request->file('profile-picture')->move("/images/profile/", 'test.jpg');
-            return ['code'=>1, 'path'=>$fullPath];
+            $request->file('profile-picture')->move(storage_path().'/images/profile', $fileName);
+            return ['code'=>1, 'path'=>$fileName];
         }
     }
 }

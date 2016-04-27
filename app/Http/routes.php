@@ -23,3 +23,20 @@ Route::get('/login/{error?}', 'AuthorController@login');
 Route::post('/login', 'AuthorController@postLogin');
 Route::get('/edit-profile', 'AuthorController@editProfile');
 Route::post('/edit-profile', 'AuthorController@postEditProfile');
+Route::get('/logout', 'AuthorController@logout');
+
+
+Route::get('images/profile/{filename}', function ($filename)
+{
+    $path = storage_path() . '/images/profile/' . $filename;
+
+    if(!File::exists($path)) abort(404);
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});

@@ -32,6 +32,7 @@
                         <input id="my-file-selector" name="profile-picture" type="file" style="display:none;">
                         Browse for Pictures
                     </label>
+                    <img src="{{url('/images/profile').'/'.$author->picture}}" height="40px" />
                 </div>
                 <button type="submit" class="btn btn-default">Save</button>
             </form>

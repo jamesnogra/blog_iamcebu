@@ -43,7 +43,11 @@
 					<div class="top-nav-links">Travel</div>
 					<div class="top-nav-links">Technology</div>
 					<div class="top-nav-links">Design</div>
-					<div class="top-nav-links">About</div>
+					@if(Auth::check())
+						<a href="{{url('logout')}}"><div class="top-nav-links">Logout</div></a>
+					@else
+						<a href="{{url('logout')}}"><div class="top-nav-links">Sign In</div></a>
+					@endif
 				</div>
 				<div class="col-sm-1"></div>
 			</div>
