@@ -16,3 +16,10 @@
 });*/
 
 Route::get('/', 'ArticleController@index');
+
+Route::get('/sign-up', 'AuthorController@signUp');
+Route::post('/sign-up', 'AuthorController@postSignUp');
+Route::get('/login/{error?}', 'AuthorController@login');
+Route::post('/login', 'AuthorController@postLogin');
+Route::get('/edit-profile', 'AuthorController@editProfile');
+Route::post('/edit-profile', 'AuthorController@postEditProfile');

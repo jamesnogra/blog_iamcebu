@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <p>XXXThis is my body content.</p>
+    <div class="row">
+        <div class="col-sm-12">Home Page</div>
+    </div>
 @endsection

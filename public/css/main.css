@@ -1,6 +1,11 @@
 body {
 	width: 100%;
     font-family: 'Lato', sans-serif;
+	color: #4d4d4d;
+}
+
+.my-center {
+	text-align: center;
 }
 
 /*TOP NAVIGATION with globe and menus*/
@@ -35,4 +40,24 @@ body {
 	font-size: 24px;
 	font-weight: bold;
 	margin-top: 60px;
+}
+
+
+/*NAV LINKS*/
+.top-nav-links {
+	cursor: pointer;
+	float: left;
+	padding: 10px 20px 10px 20px;
+	-webkit-transition: background-color 0.5s; /* Safari */
+	transition: background-color 0.5s;
+}
+.top-nav-links:hover {
+	background-color: #f1e3d5;
+}
+
+#error-message {
+	color: #cc3300;
+	padding: 5px;
+	margin: 5px 0px 5px 0px;
+	border-radius: 5px;
 }

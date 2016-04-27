@@ -8,11 +8,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="stylesheet" type="text/css" href="{{url('/css/bootstrap.css')}}">
+		<script src="{{url('/js/jquery.js')}}"></script>
 		<script src="{{url('/js/bootstrap.js')}}"></script>
         <link href='https://fonts.googleapis.com/css?family=Lato:100,300,500' rel='stylesheet' type='text/css'>
         
 		<link rel="stylesheet" type="text/css" href="{{url('/css/main.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{url('/css/globe.css')}}">
+		@yield('my-scripts')
     </head>
 
 
@@ -36,13 +38,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-7" id="main-top-nav-links">Home | Blah | Blah | Blah</div>
+				<div class="col-sm-7" id="main-top-nav-links">
+					<div class="top-nav-links">Home</div>
+					<div class="top-nav-links">Travel</div>
+					<div class="top-nav-links">Technology</div>
+					<div class="top-nav-links">Design</div>
+					<div class="top-nav-links">About</div>
+				</div>
 				<div class="col-sm-1"></div>
 			</div>
 		</div>
 			
 		<div id="main-content">
-			<h1>I am Cebu</h1>
 			@yield('content')
 		</div>
 		
