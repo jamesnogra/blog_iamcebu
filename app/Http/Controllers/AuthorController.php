@@ -9,6 +9,8 @@ use Hash;
 use Auth;
 use Validator;
 use App\Author;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class AuthorController extends Controller
 {
@@ -105,7 +107,12 @@ class AuthorController extends Controller
         else {
             $extension = $request->file('profile-picture')->getClientOriginalExtension(); // getting image extension
             $fileName = $code.'.'.$extension; // renaming image
-            $request->file('profile-picture')->move(storage_path().'/images/profile', $fileName);
+            //$request->file('profile-picture')->move(storage_path().'/images/profile', $fileName);
+            $image = $request->file('profile-picture');
+            //File::makeDirectory(storage_path('/images/profile/' . $fileName));
+            Image::make($image->getRealPath())->resize(320, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(storage_path().'/images/profile/'.$fileName);
             return ['code'=>1, 'path'=>$fileName];
         }
     }

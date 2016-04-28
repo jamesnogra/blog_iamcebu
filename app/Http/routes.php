@@ -21,12 +21,18 @@ Route::get('/sign-up', 'AuthorController@signUp');
 Route::post('/sign-up', 'AuthorController@postSignUp');
 Route::get('/login/{error?}', 'AuthorController@login');
 Route::post('/login', 'AuthorController@postLogin');
-Route::get('/edit-profile', 'AuthorController@editProfile');
-Route::post('/edit-profile', 'AuthorController@postEditProfile');
-Route::get('/logout', 'AuthorController@logout');
+Route::get('/edit-profile', ['uses'=>'AuthorController@editProfile', 'middleware'=>'auth']);
+Route::post('/edit-profile', ['uses'=>'AuthorController@postEditProfile', 'middleware'=>'auth']);
+Route::get('/logout', ['uses'=>'AuthorController@logout', 'middleware'=>'auth']);
 
+Route::get('/my-articles', ['uses'=>'ArticleController@myArticles', 'middleware'=>'auth']);
+Route::get('/create-article/{code?}', ['uses'=>'ArticleController@createArticle', 'middleware'=>'auth']);
+Route::post('/create-article', ['uses'=>'ArticleController@postCreateArticle', 'middleware'=>'auth']);
+Route::post('/edit-article', ['uses'=>'ArticleController@postEditArticle', 'middleware'=>'auth']);
 
-Route::get('images/profile/{filename}', function ($filename)
+Route::get('/{code}/{title}', 'ArticleController@viewArticle');
+
+Route::get('images/profile/{filename}', [function ($filename)
 {
     $path = storage_path() . '/images/profile/' . $filename;
 
@@ -39,4 +45,4 @@ Route::get('images/profile/{filename}', function ($filename)
     $response->header("Content-Type", $type);
 
     return $response;
-});
+}]);
