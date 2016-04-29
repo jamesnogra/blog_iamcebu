@@ -8,18 +8,26 @@ use App\Http\Requests;
 use Crypt;
 use Auth;
 use App\Article;
+use App\Comment;
 
 class ArticleController extends Controller
 {
-    public function index()
+    public function index($start=0)
     {
-        return view('articles.index');
+        $selectedArticles = Article::orderBy('id', 'desc')->paginate(5);
+        return view('articles.index', ['articles'=>$selectedArticles]);
     }
 
     public function viewArticle($code=null, $title=null)
     {
         $article = Article::where('code', $code)->first();
-        return view('articles.view-article', ['article'=>$article]);
+        $comments = Comment::where('article_id', $article->id)->orderBy('id', 'desc')->get();
+        return view('articles.view-article', ['article'=>$article, 'comments'=>$comments]);
+    }
+
+    public function viewArticlesWithTag($tag) {
+        $selectedArticles = Article::where('tags', 'like', '%'.$tag.'%')->orderBy('id', 'desc')->paginate(5);
+        return view('articles.index', ['articles'=>$selectedArticles]);
     }
 
     public function myArticles()
@@ -89,6 +97,13 @@ class ArticleController extends Controller
         $editArticle->password = $passwordParam;
         $editArticle->save();
 
+        return redirect()->action('ArticleController@myArticles');
+    }
+
+    public function deleteArticle($code, $id)
+    {
+        $userParam = Auth::user();
+        Article::where('code', $code)->where('id', $id)->where('author_id', $userParam->id)->delete();
         return redirect()->action('ArticleController@myArticles');
     }
 }

@@ -15,8 +15,6 @@
     return view('welcome');
 });*/
 
-Route::get('/', 'ArticleController@index');
-
 Route::get('/sign-up', 'AuthorController@signUp');
 Route::post('/sign-up', 'AuthorController@postSignUp');
 Route::get('/login/{error?}', 'AuthorController@login');
@@ -29,6 +27,14 @@ Route::get('/my-articles', ['uses'=>'ArticleController@myArticles', 'middleware'
 Route::get('/create-article/{code?}', ['uses'=>'ArticleController@createArticle', 'middleware'=>'auth']);
 Route::post('/create-article', ['uses'=>'ArticleController@postCreateArticle', 'middleware'=>'auth']);
 Route::post('/edit-article', ['uses'=>'ArticleController@postEditArticle', 'middleware'=>'auth']);
+Route::get('/article/delete/{code}/{id}', ['uses'=>'ArticleController@deleteArticle', 'middleware'=>'auth']);
+Route::get('/articles/tag/{tag}', 'ArticleController@viewArticlesWithTag');
+
+Route::post('/comment', 'CommentController@postComment');
+Route::get('/comment/delete/{code}/{id}', 'CommentController@deleteComment');
+Route::get('/comments/test', 'CommentController@test');
+
+Route::get('/{start?}', 'ArticleController@index');
 
 Route::get('/{code}/{title}', 'ArticleController@viewArticle');
 

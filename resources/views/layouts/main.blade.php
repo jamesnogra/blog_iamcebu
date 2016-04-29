@@ -40,10 +40,10 @@
 				</div>
 				<div class="col-sm-7" id="main-top-nav-links">
 					<a href="{{url('')}}"><div class="top-nav-links">Home</div></a>
-					<a href=""><div class="top-nav-links">Travel</div></a>
-					<a href=""><div class="top-nav-links">Technology</div></a>
-					<a href=""><div class="top-nav-links">Design</div></a>
-					<a href=""><div class="top-nav-links">About</div></a>
+					<a href="{{url('/articles/tag/travel')}}"><div class="top-nav-links">Travel</div></a>
+					<a href="{{url('/articles/tag/technology')}}"><div class="top-nav-links">Technology</div></a>
+					<a href="{{url('/articles/tag/design')}}"><div class="top-nav-links">Design</div></a>
+					<a href="{{url('/about-page')}}"><div class="top-nav-links">About</div></a>
 				</div>
 				<div class="col-sm-1"></div>
 			</div>
@@ -55,17 +55,34 @@
 				@yield('content')
 			</div>
 			<div class="col-sm-3">
+				<?php $latestArticles = \App\Article::orderBy('id', 'desc')->take(7)->get(); ?>
 				<div class="card-shadow">
 					<div class="each-article-container-title">Latest Articles</div>
 					<div class="each-article-container-content">
-						Meow
+						@foreach($latestArticles as $article)
+							<a href="{{url('/'.$article->code.'/'.$article->title)}}">{{$article->title}}</a><br />
+						@endforeach
 					</div>
 				</div>
 				<br />
 				<div class="card-shadow">
 					<div class="each-article-container-title">Article Tags</div>
 					<div class="each-article-container-content">
-						Meow
+						<?php
+							$allTags = [];
+							foreach($latestArticles as $article) {
+								$tempArrayTags = explode(",", $article['tags']);
+								foreach ($tempArrayTags as $tag) {
+									if (strlen($tag) > 1) {
+										$allTags[] = trim($tag);
+									}
+								}
+							}
+							$uniqueTags = array_unique($allTags);
+							foreach ($uniqueTags as $tag) {
+								echo '<a class="btn btn-default tags-button" href="'.url('/articles/tag').'/'.trim($tag).'">'.trim($tag).'</a>';
+							}
+						?>
 					</div>
 				</div>
 			</div>
