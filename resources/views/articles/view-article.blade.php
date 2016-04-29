@@ -1,5 +1,8 @@
 @extends('layouts.main')
 
+@section('title')
+     - {{$article->title}}
+@endsection
 
 @section('content')
     <div>

@@ -3,7 +3,7 @@
 
 
     <head>
-        <title>I Am Cebu - Blog</title>
+        <title>I Am Cebu - Blog @yield('title')</title>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		

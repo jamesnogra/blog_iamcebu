@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    - Cebu Travel, Business, Technology, Restaurants, Reviews, and more...
+@endsection
+
 @section('content')
     <div>
         @foreach($articles as $article)
